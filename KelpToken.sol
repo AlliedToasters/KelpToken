@@ -13,12 +13,12 @@ contract KelpToken is Ownable, ERC20 {
     uint256 public appreciationParameter;
     
     constructor(uint256 initialGramsBioMassSequestered) ERC20("KelpToken", "KELP") {
-        appreciationParameter = 1e11;
+        appreciationParameter = 5e12; //higher value means more circulating supply
         totalGramsBiomassSequestered = totalGramsBiomassSequestered.add(initialGramsBioMassSequestered);
-        _mint(msg.sender, _computeAmountToMint(initialGramsBioMassSequestered));
+        _mint(msg.sender, computeAmountToMint(initialGramsBioMassSequestered));
     }
     
-    function _computeAmountToMint(uint256 _bioMassGrams) private view returns (uint256) {
+    function computeAmountToMint(uint256 _bioMassGrams) public view returns (uint256) {
         return (_bioMassGrams.mul(1e8)).div(((totalSupply().div(appreciationParameter)).add(1)));
     }
     
@@ -32,7 +32,7 @@ contract KelpToken is Ownable, ERC20 {
     
     function mintKelpToken(address _to, uint _gramsBioMassSequestered) public onlyOwner {
         totalGramsBiomassSequestered = totalGramsBiomassSequestered.add(_gramsBioMassSequestered);
-        _mint(_to, _computeAmountToMint(_gramsBioMassSequestered));
+        _mint(_to, computeAmountToMint(_gramsBioMassSequestered));
     }
     
 }
