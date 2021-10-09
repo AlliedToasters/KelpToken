@@ -10,6 +10,9 @@ Built using [OpenZeppelin's ERC20 implementation](https://docs.openzeppelin.com/
 ### Custom Methods
 The KelpToken contract implements a few new methods on top of ERC20 and overrides a few.
 
+### Custom Events
+`KelpMinted` is the only custom event in the contract. It records important details: how much carbon was sequestered for the preceding period (`_gramsCarbonSequestered`), how many planktons were minted in this minting (`_unitsMinted`), the issuance rate used (`_issuancePlanktonPerGram`), the cumulative sequestered carbon mass at the time of minting (`_cumulativeMassGrams`), the cumulative supply of Kelp (in planktons) at the time of minting (`_cumulativeSupply`), the docHash for the minting, and the beneficiary (``), or the ethereum address to receive the minted kelp (`_beneficiary`).
+
 ```
     event KelpMinted(
         uint _gramsCarbonSequestered, 
