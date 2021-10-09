@@ -1,6 +1,6 @@
 # KelpToken
 
-WIP
+An appreciating asset backed by captured carbon.
 
 ## Contract Details
 
